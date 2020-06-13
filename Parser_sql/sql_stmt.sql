@@ -1,3 +1,8 @@
+CREATE TABLE marks(
+    visit_id,
+    first_name,
+);
+
 CREATE TABLE sales(
     visit_id INT PRIMARY KEY IDENTITY (1, 1),
     first_name VARCHAR (50) NOT NULL,
@@ -9,4 +14,7 @@ CREATE TABLE sales(
 );
 
 SELECT * FROM dogs WHERE name = pes;
+
 DELETE FROM users;
+
+INSERT INTO dogs(name) VALUES(bobik);

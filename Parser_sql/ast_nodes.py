@@ -53,6 +53,23 @@ class SimpleSelect(QueryStatement):
         self._where = where
         self._oper = oper
 
+class Insert(QueryStatement):
+    _fields = ['_table_name', '_values', '_column_name']
+
+    def __init__(self, table_name: str, values: str, column_name: str):
+        super().__init__()
+        self._values = values
+        self._table_name = table_name
+        self._column_name = column_name
+
+
+class Delete(QueryStatement):
+    _fields = ['_table_name']
+
+    def __init__(self,table_name: str):
+        super().__init__()
+        self._table_name = table_name
+
 
 class QueriesList(ASTNode):
     _fields = ['_queries']

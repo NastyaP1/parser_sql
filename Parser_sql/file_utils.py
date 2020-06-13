@@ -113,10 +113,24 @@ def delete_query(query: SimpleSelect):
             print(table)
 
 
-def insert_query(database_name,keys: list, values: list):
+def insert_query(query: Insert):
+    database_name = query._table_name
+    keys = query._column_name
+    values = query._values
     with shelve.open(FILENAME) as tables:
+        dogs = tables[database_name]['data']
+        dogs = dogs + generate_dict_list(keys, values)
         tables[database_name] = {
-            'data': generate_dict_list(keys, values)
+            'data': dogs
+        }
+        for table in tables.items():
+            print(table)
+
+
+def create_table_query(query: CreateTable):
+    with shelve.open(FILENAME) as tables:
+        tables[query._table_name] = {
+            'data': []
         }
         for table in tables.items():
             print(table)
