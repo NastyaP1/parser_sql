@@ -1,6 +1,6 @@
 CREATE TABLE marks(
-    visit_id,
-    first_name,
+    id,
+    mark,
 );
 
 CREATE TABLE sales(
@@ -17,4 +17,4 @@ SELECT * FROM dogs WHERE name = pes;
 
 DELETE FROM users;
 
-INSERT INTO dogs(name) VALUES(bobik);
+INSERT INTO marks(id, mark) VALUES(1, 5);

@@ -1,7 +1,7 @@
 import shelve
 from enum import Enum
 from typing import List
-from Parser_sql.ast_nodes import SimpleSelect
+from Parser_sql.ast_nodes import SimpleSelect, Insert, CreateTable, Delete
 
 
 FILENAME = "./tables"
@@ -34,6 +34,15 @@ def read_binary_file():
                     }
                 ]
         }
+        tables["dogs"] = {
+            'data':
+                [
+                    {
+                        'id': 1,
+                        'name': 'pes'
+                    }
+                ]
+        }
 
 
 class OperandCondition:
@@ -50,10 +59,10 @@ def select_query(query: SimpleSelect):
     database_name = query._table_name
     with shelve.open(FILENAME) as tables:
         if database_name in tables:
-            print('-----------------------------------------------------------------------------')
+            print('-------------------------------------BEFORE SELECT---------------------------------')
             for table in tables.items():
                 print(table)
-            print('-----------------------------------------------------------------------------')
+            print('-------------------------------------AFTER SELECT---------------------------------')
             for data in tables[database_name]['data']:
                 if operand == '=':
                     if data[lp] == rp:
@@ -72,13 +81,16 @@ def select_query(query: SimpleSelect):
                         print(data)
 
 
-def delete_all_query(query: SimpleSelect):
+def delete_all_query(query: Delete):
     with shelve.open(FILENAME) as tables:
-        del tables[query._table_name]
-
+        print('-------------------------------BEFORE DELETE-------------------------------------')
         for table in tables.items():
             print(table)
+        del tables[query._table_name]
 
+        print('-------------------------------AFTER DELETE-------------------------------------')
+        for table in tables.items():
+            print(table)
 
 def delete_query(query: SimpleSelect):
     lp = query._where[0]
@@ -108,7 +120,7 @@ def delete_query(query: SimpleSelect):
                 if operand == '<=':
                     if data[lp] <= rp:
                         print(data)
-
+        print('-------------------------------AFTER DELETE-------------------------------------')
         for table in tables.items():
             print(table)
 
@@ -118,20 +130,28 @@ def insert_query(query: Insert):
     keys = query._column_name
     values = query._values
     with shelve.open(FILENAME) as tables:
+        print('-------------------------------BEFORE INSERT----------------------------------------------')
+        for table in tables.items():
+            print(table)
         dogs = tables[database_name]['data']
         dogs = dogs + generate_dict_list(keys, values)
         tables[database_name] = {
             'data': dogs
         }
+        print('-------------------------------AFTER INSERT-------------------------------------')
         for table in tables.items():
             print(table)
 
 
 def create_table_query(query: CreateTable):
     with shelve.open(FILENAME) as tables:
+        print('-------------------------------------BEFORE CREATE---------------------------------')
+        for table in tables.items():
+            print(table)
         tables[query._table_name] = {
             'data': []
         }
+        print('-------------------------------------AFTER CREATE---------------------------------')
         for table in tables.items():
             print(table)
 

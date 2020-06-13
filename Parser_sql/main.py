@@ -29,7 +29,7 @@ def main():
     read_binary_file()
     select_query(ast_tree._queries[0]._statements[2])
     delete_all_query(ast_tree._queries[0]._statements[3])
-    # create_table_query(ast_tree._queries[0]._statements[0])
+    create_table_query(ast_tree._queries[0]._statements[0])
     insert_query(ast_tree._queries[0]._statements[4])
 
 

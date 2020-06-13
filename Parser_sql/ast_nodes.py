@@ -42,7 +42,6 @@ class CreateTable(QueryStatement):
         self._columns_definitions = columns_definitions
 
 
-
 class SimpleSelect(QueryStatement):
     _fields = ['_column_results', '_table_name', '_where', '_oper']
 
@@ -52,6 +51,7 @@ class SimpleSelect(QueryStatement):
         self._table_name = table_name
         self._where = where
         self._oper = oper
+
 
 class Insert(QueryStatement):
     _fields = ['_table_name', '_values', '_column_name']

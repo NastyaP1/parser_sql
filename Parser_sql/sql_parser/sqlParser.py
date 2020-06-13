@@ -1,4 +1,4 @@
-# Generated from /Users/anastasiapereslavceva/Downloads/Sql_parser/Parser_sql/sql.g4 by ANTLR 4.8
+# Generated from /Users/anastasiapereslavceva/parser_sql/Parser_sql/sql.g4 by ANTLR 4.8
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
@@ -464,40 +464,40 @@ def serializedATN():
         buf.write("\u031c\3\2\2\2\u031f\u0320\7\6\2\2\u0320\u0322\3\2\2\2")
         buf.write("\u0321\u0316\3\2\2\2\u0321\u0322\3\2\2\2\u0322\u0342\3")
         buf.write("\2\2\2\u0323\u0324\7\u0090\2\2\u0324\u0325\7\5\2\2\u0325")
-        buf.write("\u032a\5> \2\u0326\u0327\7\7\2\2\u0327\u0329\5> \2\u0328")
-        buf.write("\u0326\3\2\2\2\u0329\u032c\3\2\2\2\u032a\u0328\3\2\2\2")
-        buf.write("\u032a\u032b\3\2\2\2\u032b\u032d\3\2\2\2\u032c\u032a\3")
-        buf.write("\2\2\2\u032d\u033c\7\6\2\2\u032e\u032f\7\7\2\2\u032f\u0330")
-        buf.write("\7\5\2\2\u0330\u0335\5> \2\u0331\u0332\7\7\2\2\u0332\u0334")
-        buf.write("\5> \2\u0333\u0331\3\2\2\2\u0334\u0337\3\2\2\2\u0335\u0333")
-        buf.write("\3\2\2\2\u0335\u0336\3\2\2\2\u0336\u0338\3\2\2\2\u0337")
-        buf.write("\u0335\3\2\2\2\u0338\u0339\7\6\2\2\u0339\u033b\3\2\2\2")
-        buf.write("\u033a\u032e\3\2\2\2\u033b\u033e\3\2\2\2\u033c\u033a\3")
-        buf.write("\2\2\2\u033c\u033d\3\2\2\2\u033d\u0343\3\2\2\2\u033e\u033c")
-        buf.write("\3\2\2\2\u033f\u0343\5(\25\2\u0340\u0341\7:\2\2\u0341")
-        buf.write("\u0343\7\u0090\2\2\u0342\u0323\3\2\2\2\u0342\u033f\3\2")
-        buf.write("\2\2\u0342\u0340\3\2\2\2\u0343\63\3\2\2\2\u0344\u0345")
-        buf.write("\7A\2\2\u0345\u0348\7V\2\2\u0346\u0347\7R\2\2\u0347\u0349")
-        buf.write("\7H\2\2\u0348\u0346\3\2\2\2\u0348\u0349\3\2\2\2\u0349")
-        buf.write("\u034d\3\2\2\2\u034a\u034b\5d\63\2\u034b\u034c\7\4\2\2")
-        buf.write("\u034c\u034e\3\2\2\2\u034d\u034a\3\2\2\2\u034d\u034e\3")
-        buf.write("\2\2\2\u034e\u034f\3\2\2\2\u034f\u0350\5p9\2\u0350\65")
-        buf.write("\3\2\2\2\u0351\u0352\7A\2\2\u0352\u0355\7\u0084\2\2\u0353")
-        buf.write("\u0354\7R\2\2\u0354\u0356\7H\2\2\u0355\u0353\3\2\2\2\u0355")
-        buf.write("\u0356\3\2\2\2\u0356\u035a\3\2\2\2\u0357\u0358\5d\63\2")
-        buf.write("\u0358\u0359\7\4\2\2\u0359\u035b\3\2\2\2\u035a\u0357\3")
-        buf.write("\2\2\2\u035a\u035b\3\2\2\2\u035b\u035c\3\2\2\2\u035c\u035d")
-        buf.write("\5j\66\2\u035d\67\3\2\2\2\u035e\u0360\5@!\2\u035f\u035e")
-        buf.write("\3\2\2\2\u035f\u0360\3\2\2\2\u0360\u0361\3\2\2\2\u0361")
-        buf.write("\u0362\7=\2\2\u0362\u0363\7M\2\2\u0363\u0366\5<\37\2\u0364")
-        buf.write("\u0365\7\u0094\2\2\u0365\u0367\5> \2\u0366\u0364\3\2\2")
-        buf.write("\2\u0366\u0367\3\2\2\2\u03679\3\2\2\2\u0368\u036a\5@!")
-        buf.write("\2\u0369\u0368\3\2\2\2\u0369\u036a\3\2\2\2\u036a\u036b")
-        buf.write("\3\2\2\2\u036b\u036c\7=\2\2\u036c\u036d\7M\2\2\u036d\u0370")
-        buf.write("\5<\37\2\u036e\u036f\7\u0094\2\2\u036f\u0371\5> \2\u0370")
-        buf.write("\u036e\3\2\2\2\u0370\u0371\3\2\2\2\u0371\u0384\3\2\2\2")
-        buf.write("\u0372\u0373\7o\2\2\u0373\u0374\7*\2\2\u0374\u0379\5D")
-        buf.write("#\2\u0375\u0376\7\7\2\2\u0376\u0378\5D#\2\u0377\u0375")
+        buf.write("\u032a\5\24\13\2\u0326\u0327\7\7\2\2\u0327\u0329\5\24")
+        buf.write("\13\2\u0328\u0326\3\2\2\2\u0329\u032c\3\2\2\2\u032a\u0328")
+        buf.write("\3\2\2\2\u032a\u032b\3\2\2\2\u032b\u032d\3\2\2\2\u032c")
+        buf.write("\u032a\3\2\2\2\u032d\u033c\7\6\2\2\u032e\u032f\7\7\2\2")
+        buf.write("\u032f\u0330\7\5\2\2\u0330\u0335\5\24\13\2\u0331\u0332")
+        buf.write("\7\7\2\2\u0332\u0334\5\24\13\2\u0333\u0331\3\2\2\2\u0334")
+        buf.write("\u0337\3\2\2\2\u0335\u0333\3\2\2\2\u0335\u0336\3\2\2\2")
+        buf.write("\u0336\u0338\3\2\2\2\u0337\u0335\3\2\2\2\u0338\u0339\7")
+        buf.write("\6\2\2\u0339\u033b\3\2\2\2\u033a\u032e\3\2\2\2\u033b\u033e")
+        buf.write("\3\2\2\2\u033c\u033a\3\2\2\2\u033c\u033d\3\2\2\2\u033d")
+        buf.write("\u0343\3\2\2\2\u033e\u033c\3\2\2\2\u033f\u0343\5(\25\2")
+        buf.write("\u0340\u0341\7:\2\2\u0341\u0343\7\u0090\2\2\u0342\u0323")
+        buf.write("\3\2\2\2\u0342\u033f\3\2\2\2\u0342\u0340\3\2\2\2\u0343")
+        buf.write("\63\3\2\2\2\u0344\u0345\7A\2\2\u0345\u0348\7V\2\2\u0346")
+        buf.write("\u0347\7R\2\2\u0347\u0349\7H\2\2\u0348\u0346\3\2\2\2\u0348")
+        buf.write("\u0349\3\2\2\2\u0349\u034d\3\2\2\2\u034a\u034b\5d\63\2")
+        buf.write("\u034b\u034c\7\4\2\2\u034c\u034e\3\2\2\2\u034d\u034a\3")
+        buf.write("\2\2\2\u034d\u034e\3\2\2\2\u034e\u034f\3\2\2\2\u034f\u0350")
+        buf.write("\5p9\2\u0350\65\3\2\2\2\u0351\u0352\7A\2\2\u0352\u0355")
+        buf.write("\7\u0084\2\2\u0353\u0354\7R\2\2\u0354\u0356\7H\2\2\u0355")
+        buf.write("\u0353\3\2\2\2\u0355\u0356\3\2\2\2\u0356\u035a\3\2\2\2")
+        buf.write("\u0357\u0358\5d\63\2\u0358\u0359\7\4\2\2\u0359\u035b\3")
+        buf.write("\2\2\2\u035a\u0357\3\2\2\2\u035a\u035b\3\2\2\2\u035b\u035c")
+        buf.write("\3\2\2\2\u035c\u035d\5j\66\2\u035d\67\3\2\2\2\u035e\u0360")
+        buf.write("\5@!\2\u035f\u035e\3\2\2\2\u035f\u0360\3\2\2\2\u0360\u0361")
+        buf.write("\3\2\2\2\u0361\u0362\7=\2\2\u0362\u0363\7M\2\2\u0363\u0366")
+        buf.write("\5<\37\2\u0364\u0365\7\u0094\2\2\u0365\u0367\5> \2\u0366")
+        buf.write("\u0364\3\2\2\2\u0366\u0367\3\2\2\2\u03679\3\2\2\2\u0368")
+        buf.write("\u036a\5@!\2\u0369\u0368\3\2\2\2\u0369\u036a\3\2\2\2\u036a")
+        buf.write("\u036b\3\2\2\2\u036b\u036c\7=\2\2\u036c\u036d\7M\2\2\u036d")
+        buf.write("\u0370\5<\37\2\u036e\u036f\7\u0094\2\2\u036f\u0371\5>")
+        buf.write(" \2\u0370\u036e\3\2\2\2\u0370\u0371\3\2\2\2\u0371\u0384")
+        buf.write("\3\2\2\2\u0372\u0373\7o\2\2\u0373\u0374\7*\2\2\u0374\u0379")
+        buf.write("\5D#\2\u0375\u0376\7\7\2\2\u0376\u0378\5D#\2\u0377\u0375")
         buf.write("\3\2\2\2\u0378\u037b\3\2\2\2\u0379\u0377\3\2\2\2\u0379")
         buf.write("\u037a\3\2\2\2\u037a\u037d\3\2\2\2\u037b\u0379\3\2\2\2")
         buf.write("\u037c\u0372\3\2\2\2\u037c\u037d\3\2\2\2\u037d\u037e\3")
@@ -4917,11 +4917,11 @@ class sqlParser ( Parser ):
             else:
                 return self.getToken(sqlParser.OPEN_PAR, i)
 
-        def expr(self, i:int=None):
+        def expr1(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(sqlParser.ExprContext)
+                return self.getTypedRuleContexts(sqlParser.Expr1Context)
             else:
-                return self.getTypedRuleContext(sqlParser.ExprContext,i)
+                return self.getTypedRuleContext(sqlParser.Expr1Context,i)
 
 
         def CLOSE_PAR(self, i:int=None):
@@ -5102,7 +5102,7 @@ class sqlParser ( Parser ):
                 self.state = 802
                 self.match(sqlParser.OPEN_PAR)
                 self.state = 803
-                self.expr(0)
+                self.expr1(0)
                 self.state = 808
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
@@ -5110,7 +5110,7 @@ class sqlParser ( Parser ):
                     self.state = 804
                     self.match(sqlParser.COMMA)
                     self.state = 805
-                    self.expr(0)
+                    self.expr1(0)
                     self.state = 810
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
@@ -5126,7 +5126,7 @@ class sqlParser ( Parser ):
                     self.state = 813
                     self.match(sqlParser.OPEN_PAR)
                     self.state = 814
-                    self.expr(0)
+                    self.expr1(0)
                     self.state = 819
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
@@ -5134,7 +5134,7 @@ class sqlParser ( Parser ):
                         self.state = 815
                         self.match(sqlParser.COMMA)
                         self.state = 816
-                        self.expr(0)
+                        self.expr1(0)
                         self.state = 821
                         self._errHandler.sync(self)
                         _la = self._input.LA(1)

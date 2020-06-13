@@ -112,7 +112,7 @@ def parse(text, start="root", **kwargs):
         Grammar, text, start, **kwargs
     )
 
-    Transformer.bind_alias_nodes([RootQueryNode, QueryNode, CreateTableNode, ColumnDefinitionNode, SimpSelectNode, DeleteNode, InsertNode]])
+    Transformer.bind_alias_nodes([RootQueryNode, QueryNode, CreateTableNode, ColumnDefinitionNode, SimpSelectNode, DeleteNode, InsertNode])
     simple_tree = process_tree(antlr_tree, transformer_cls=Transformer)
 
     return simple_tree.build_ast()

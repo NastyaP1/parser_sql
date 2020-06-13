@@ -217,7 +217,7 @@ insert_stmt
                 | K_INSERT K_OR K_FAIL
                 | K_INSERT K_OR K_IGNORE ) K_INTO
    ( database_name '.' )? table_name ( '(' column_name ( ',' column_name )* ')' )?
-   ( K_VALUES '(' expr ( ',' expr )* ')' ( ',' '(' expr ( ',' expr )* ')' )*
+   ( K_VALUES '(' expr1 ( ',' expr1 )* ')' ( ',' '(' expr1 ( ',' expr1 )* ')' )*
    | select_stmt
    | K_DEFAULT K_VALUES
    )
