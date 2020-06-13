@@ -1,20 +1,15 @@
 CREATE TABLE marks(
-    id,
-    mark,
-);
-
-CREATE TABLE sales(
-    visit_id INT PRIMARY KEY IDENTITY (1, 1),
-    first_name VARCHAR (50) NOT NULL,
-    last_name VARCHAR (50) NOT NULL,
-    visited_at DATETIME,
-    phone VARCHAR(20),
-    store_id INT NOT NULL,
-    FOREIGN KEY (store_id) REFERENCES sales (store_id)
+    id INT,
+    mark INT,
 );
 
 SELECT * FROM dogs WHERE name = pes;
 
-DELETE FROM users;
+DELETE FROM cats WHERE name = Tom;
 
-INSERT INTO marks(id, mark) VALUES(1, 5);
+INSERT INTO cats(id, name) VALUES(1, Tom);
+
+DELETE FROM cats;
+
+UPDATE cats SET id = 12, name = Barsik WHERE name = Tom;
+UPDATE cats SET id = 12, name = Barsik;

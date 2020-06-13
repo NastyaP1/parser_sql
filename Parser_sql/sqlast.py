@@ -1,17 +1,13 @@
-import astpretty
 
 from antlr_ast.ast import (
     AliasNode,
-    BaseNode as AstNode,  # used in other tests
     parse as parse_ast,
     process_tree,
     BaseNodeTransformer,
     Terminal,
 )
-from antlr_ast.inputstream import CaseTransformInputStream
-from antlr_ast.marshalling import AstEncoder, get_decoder
 
-from Parser_sql.ast_nodes import QueriesList, Query, CreateTable, ColumnDefinition, SimpleSelect, Delete, Insert
+from Parser_sql.ast_nodes import QueriesList, Query, CreateTable, ColumnDefinition, SimpleSelect, Delete, Insert, Update
 from Parser_sql.sql_parser.sqlParser import sqlParser
 from Parser_sql.sql_parser.sqlLexer import sqlLexer
 
@@ -71,13 +67,26 @@ class ColumnDefinitionNode(AliasNode):
     def build_ast(self):
         return ColumnDefinition(self.name, self.type)
 
+
 class DeleteNode(AliasNode):
-    _fields_spec = ['table_name=delete_stmt.qualified_table_name']
+    _fields_spec = ['table_name=delete_stmt.qualified_table_name', 'where=delete_stmt.where.expr1',
+                    'oper=delete_stmt.where.some_operator']
 
     _rules = ['delete_statement']
 
     def build_ast(self):
-        return Delete(self.table_name)
+        return Delete(self.table_name, self.where, self.oper)
+
+
+class UpdateNode(AliasNode):
+    _fields_spec = ['table_name=update_stmt.qualified_table_name', 'where=update_stmt.where.expr1',
+                    'oper=update_stmt.where.some_operator', 'column_name=update_stmt.column_name',
+                    'values=update_stmt.values']
+
+    _rules = ['update_statement']
+
+    def build_ast(self):
+        return Update(self.table_name, self.where, self.column_name, self.oper, self.values)
 
 
 class InsertNode(AliasNode):
@@ -112,7 +121,8 @@ def parse(text, start="root", **kwargs):
         Grammar, text, start, **kwargs
     )
 
-    Transformer.bind_alias_nodes([RootQueryNode, QueryNode, CreateTableNode, ColumnDefinitionNode, SimpSelectNode, DeleteNode, InsertNode])
+    Transformer.bind_alias_nodes([RootQueryNode, QueryNode, CreateTableNode, ColumnDefinitionNode, SimpSelectNode,
+                                  DeleteNode, InsertNode, UpdateNode])
     simple_tree = process_tree(antlr_tree, transformer_cls=Transformer)
 
     return simple_tree.build_ast()

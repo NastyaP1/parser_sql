@@ -191,7 +191,7 @@ update_stmt //
                          | K_OR K_REPLACE
                          | K_OR K_FAIL
                          | K_OR K_IGNORE )? qualified_table_name
-   K_SET column_name '=' expr ( ',' column_name '=' expr )* ( K_WHERE expr )?
+   K_SET column_name '=' values+=expr1 ( ',' column_name '=' values+=expr1 )* ( K_WHERE where = expr1 )?
  ;
 
 //update table statement with limit clause
@@ -236,7 +236,7 @@ drop_table_stmt
 // delete existing records in a table
 delete_stmt
  : with_clause? K_DELETE K_FROM qualified_table_name
-   ( K_WHERE expr )?
+   ( K_WHERE where = expr1 )?
  ;
 
 // delete existing records in a table with limit clause

@@ -1,7 +1,7 @@
 import shelve
 from enum import Enum
 from typing import List
-from Parser_sql.ast_nodes import SimpleSelect, Insert, CreateTable, Delete
+from Parser_sql.ast_nodes import SimpleSelect, Insert, CreateTable, Delete, Update
 
 
 FILENAME = "./tables"
@@ -29,8 +29,15 @@ def read_binary_file():
                 [
                     {
                         'id': 1,
-                        'name': 'Tom',
-                        'age': 12
+                        'name': 'Tom'
+                    },
+                    {
+                        'id': 2,
+                        'name': 'Tom2'
+                    },
+                    {
+                        'id': 3,
+                        'name': 'Tom'
                     }
                 ]
         }
@@ -81,66 +88,150 @@ def select_query(query: SimpleSelect):
                         print(data)
 
 
-def delete_all_query(query: Delete):
-    with shelve.open(FILENAME) as tables:
+def delete_query(query: Delete):
+    if query._where == None:
         print('-------------------------------BEFORE DELETE-------------------------------------')
-        for table in tables.items():
-            print(table)
-        del tables[query._table_name]
+        with shelve.open(FILENAME) as tables:
+            for table in tables.items():
+                print(table)
+            tables[query._table_name] = {
+                'data': []
+            }
 
-        print('-------------------------------AFTER DELETE-------------------------------------')
-        for table in tables.items():
-            print(table)
-
-def delete_query(query: SimpleSelect):
-    lp = query._where[0]
-    if (query._where[1].isdigit()):
-        rp = int(query._where[1])
+            print('-------------------------------AFTER DELETE-------------------------------------')
+            for table in tables.items():
+                print(table)
     else:
-        rp = query._where[1]
+        lp = query._where[0]
+        if (query._where[1].isdigit()):
+            rp = int(query._where[1])
+        else:
+            rp = query._where[1]
 
-    operand = query._oper
-    database_name = query._table_name
-    with shelve.open(FILENAME) as tables:
-        if database_name in tables:
-            print(tables[database_name])
-            for data in tables[database_name]['data']:
-                if operand == '=':
-                    if data[lp] == rp:
-                        print(data)
-                if operand == '>':
-                    if data[lp] > rp:
-                        print(data)
-                if operand == '<':
-                    if data[lp] < rp:
-                        print(data)
-                if operand == '>=':
-                    if data[lp] >= rp:
-                        print(data)
-                if operand == '<=':
-                    if data[lp] <= rp:
-                        print(data)
-        print('-------------------------------AFTER DELETE-------------------------------------')
-        for table in tables.items():
-            print(table)
+        operand = query._oper
+        table_name = query._table_name
+        with shelve.open(FILENAME) as tables:
+            if table_name in tables:
+                print('-------------------------------BEFORE DELETE-------------------------------------')
+                for table in tables.items():
+                    print(table)
+                res = tables[table_name]['data']
+                if len(tables[table_name]['data']) == 0:
+                    print("Table is empty")
+                else:
+                    for data in tables[table_name]['data']:
+                        if operand == '=':
+                            if data[lp] == rp:
+                                res.remove(data)
+                                tables[table_name] = {
+                                    'data': res
+                                }
+                        if operand == '>':
+                            if data[lp] > rp:
+                                res.remove(data)
+                                tables[table_name] = {
+                                    'data': res
+                                }
+                        if operand == '<':
+                            if data[lp] < rp:
+                                res.remove(data)
+                                tables[table_name] = {
+                                    'data': res
+                                }
+                        if operand == '>=':
+                            if data[lp] >= rp:
+                                res.remove(data)
+                                tables[table_name] = {
+                                    'data': res
+                                }
+                        if operand == '<=':
+                            if data[lp] <= rp:
+                                res.remove(data)
+                                tables[table_name] = {
+                                    'data': res
+                                }
+                    print('-------------------------------AFTER DELETE-------------------------------------')
+                    for table in tables.items():
+                        print(table)
 
 
 def insert_query(query: Insert):
-    database_name = query._table_name
+    table_name = query._table_name
     keys = query._column_name
     values = query._values
     with shelve.open(FILENAME) as tables:
         print('-------------------------------BEFORE INSERT----------------------------------------------')
         for table in tables.items():
             print(table)
-        dogs = tables[database_name]['data']
-        dogs = dogs + generate_dict_list(keys, values)
-        tables[database_name] = {
-            'data': dogs
+        data = tables[table_name]['data']
+        data.append(generate_dict_list(keys, values))
+        tables[table_name] = {
+            'data': data
         }
         print('-------------------------------AFTER INSERT-------------------------------------')
         for table in tables.items():
             print(table)
+
+
+def update_query(query: Update):
+    res = []
+    keys = query._column_name
+    values = query._values
+    table_name = query._table_name
+    if query._where == None:
+        print('-------------------------------BEFORE UPDATE-------------------------------------')
+        with shelve.open(FILENAME) as tables:
+            for table in tables.items():
+                print(table)
+            for data in tables[table_name]['data']:
+                data.update(generate_dict_list(keys, values))
+                res.append(data)
+            tables[table_name] = {
+                'data': res
+            }
+            print('-------------------------------AFTER UPDATE-------------------------------------')
+            for table in tables.items():
+                print(table)
+    else:
+        lp = query._where[0]
+        if (query._where[1].isdigit()):
+            rp = int(query._where[1])
+        else:
+            rp = query._where[1]
+
+        operand = query._oper
+
+        with shelve.open(FILENAME) as tables:
+            if table_name in tables:
+                print('-------------------------------BEFORE UPDATE-------------------------------------')
+                for table in tables.items():
+                    print(table)
+                if len(tables[table_name]['data']) == 0:
+                    print("Table is empty")
+                else:
+                    for data in tables[table_name]['data']:
+                        if operand == '=':
+                            if data[lp] == rp:
+                                data.update(generate_dict_list(keys, values))
+                        if operand == '>':
+                            if data[lp] > rp:
+                                data.update(generate_dict_list(keys, values))
+                        if operand == '<':
+                            if data[lp] < rp:
+                                data.update(generate_dict_list(keys, values))
+                        if operand == '>=':
+                            if data[lp] >= rp:
+                                data.update(generate_dict_list(keys, values))
+                        if operand == '<=':
+                            if data[lp] <= rp:
+                                data.update(generate_dict_list(keys, values))
+                        res.append(data)
+                    print('-------------------------------AFTER UPDATE-------------------------------------')
+                    tables[table_name] = {
+                        'data': res
+                    }
+                    for table in tables.items():
+                        print(table)
 
 
 def create_table_query(query: CreateTable):
@@ -157,10 +248,5 @@ def create_table_query(query: CreateTable):
 
 
 def generate_dict_list(keys: list, values: list):
-    dic_list = []
-    for key in keys:
-        dic_list.append({key: values[keys.index(key)]})
-    return dic_list
-
-
+    return {key: values[keys.index(key)] for key in keys}
 

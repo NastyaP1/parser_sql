@@ -1,17 +1,8 @@
-import sys
-
-import astpretty
-from antlr4 import FileStream
-from antlr4.tree import Trees
-
-from sqlast import parse
-
+from Parser_sql.sqlast import parse
 from Parser_sql.printer import print_tree
-from Parser_sql.sql_parser.sqlLexer import sqlLexer
-from Parser_sql.sql_parser.sqlParser import sqlParser, CommonTokenStream
-from utils import *
-from file_utils import *
-from Parser_sql.file_utils import select_query
+from Parser_sql.utils import *
+from Parser_sql.file_utils import select_query, delete_query,  create_table_query, insert_query, \
+    read_binary_file, update_query
 
 
 def main():
@@ -27,10 +18,12 @@ def main():
     ast_tree = parse(read_file('./sql_stmt.sql'))
     print_tree(ast_tree)
     read_binary_file()
-    select_query(ast_tree._queries[0]._statements[2])
-    delete_all_query(ast_tree._queries[0]._statements[3])
-    create_table_query(ast_tree._queries[0]._statements[0])
-    insert_query(ast_tree._queries[0]._statements[4])
+    select_query(ast_tree._queries[0]._statements[1])
+    #create_table_query(ast_tree._queries[0]._statements[0])
+    #insert_query(ast_tree._queries[0]._statements[3])
+    #delete_query(ast_tree._queries[0]._statements[2])  # delete with clause
+    #delete_query(ast_tree._queries[0]._statements[4])  # delete all
+    update_query(ast_tree._queries[0]._statements[5])
 
 
 

@@ -26,10 +26,6 @@ class ColumnDefinition(ASTNode):
         super().__init__()
         self._name = column_name
         self._type = column_type
-#
-    # _fields_spec = ['db_name=create_table_stmt.database_name', 'table_name=create_table_stmt.table_name',
-    #                 'columns=create_table_stmt.columns', 'constraints=create_table_stmt.constraints',
-    #                 'select=create_table_stmt.select_stmt']
 
 
 class CreateTable(QueryStatement):
@@ -63,12 +59,26 @@ class Insert(QueryStatement):
         self._column_name = column_name
 
 
-class Delete(QueryStatement):
-    _fields = ['_table_name']
+class Update(QueryStatement):
+    _fields = ['_table_name', '_where', '_column_name', '_oper', '_values']
 
-    def __init__(self,table_name: str):
+    def __init__(self, table_name: str, where: str, column_name: str, oper: str, values: str):
+        super().__init__()
+        self._where = where
+        self._table_name = table_name
+        self._column_name = column_name
+        self._oper = oper
+        self._values = values
+
+
+class Delete(QueryStatement):
+    _fields = ['_table_name', '_where', '_oper']
+
+    def __init__(self, table_name: str, where=str, oper=str):
         super().__init__()
         self._table_name = table_name
+        self._where = where
+        self._oper = oper
 
 
 class QueriesList(ASTNode):
