@@ -3,13 +3,18 @@ CREATE TABLE marks(
     mark INT,
 );
 
-SELECT * FROM dogs WHERE name = pes;
+INSERT INTO marks(id, mark) VALUES(1, 5);
+
+SELECT id, name FROM dogs WHERE name = pes;
+
+SELECT id FROM users WHERE age = 45;
+
+SELECT id, age FROM users WHERE age >= 23;
 
 DELETE FROM cats WHERE name = Tom;
 
-INSERT INTO cats(id, name) VALUES(1, Tom);
+DELETE FROM users;
 
-DELETE FROM cats;
+UPDATE cats SET id = 12, name = Barsik WHERE name = Tom2;
 
-UPDATE cats SET id = 12, name = Barsik WHERE name = Tom;
-UPDATE cats SET id = 12, name = Barsik;
+UPDATE cats SET name = Barsik;

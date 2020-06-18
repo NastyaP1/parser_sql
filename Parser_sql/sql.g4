@@ -58,6 +58,7 @@ create_table_stmt
 simp_select_stmt
 : K_SELECT ( K_DISTINCT | K_ALL )? columns+=result_column_1 ( ',' columns+=result_column_1 )*
 ( K_FROM table_name )?
+( K_FROM ( tables+=table_or_subquery ( ',' tables+=table_or_subquery )* | join=join_clause ) )?
 ( K_WHERE where = expr1 )?
 ;
 

@@ -18,12 +18,15 @@ def main():
     ast_tree = parse(read_file('./sql_stmt.sql'))
     print_tree(ast_tree)
     read_binary_file()
-    select_query(ast_tree._queries[0]._statements[1])
-    #create_table_query(ast_tree._queries[0]._statements[0])
-    #insert_query(ast_tree._queries[0]._statements[3])
-    #delete_query(ast_tree._queries[0]._statements[2])  # delete with clause
-    #delete_query(ast_tree._queries[0]._statements[4])  # delete all
-    update_query(ast_tree._queries[0]._statements[5])
+    create_table_query(ast_tree._queries[0]._statements[0])
+    insert_query(ast_tree._queries[0]._statements[1])
+    select_query(ast_tree._queries[0]._statements[2])
+    select_query(ast_tree._queries[0]._statements[3])
+    select_query(ast_tree._queries[0]._statements[4])
+    delete_query(ast_tree._queries[0]._statements[5])  # delete with clause
+    delete_query(ast_tree._queries[0]._statements[6])  # delete all
+    update_query(ast_tree._queries[0]._statements[7])
+    update_query(ast_tree._queries[0]._statements[8])
 
 
 
